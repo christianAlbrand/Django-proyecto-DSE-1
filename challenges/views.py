@@ -1,42 +1,31 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
+
+months_lib = {
+    "january" : "Walk for at least 30 min every day.",
+    "february" : "Go to the gym every day",
+    "march" : "Read one book this month",
+    "april": "Start a new programming project",
+    "may": "Practice a new skill daily",
+    "june": "Go for a morning run every weekend",
+    "july": "Learn a new technology or framework",
+    "august": "Write a blog post about coding",
+    "september": "Contribute to an open-source project",
+    "october": "Prepare for a coding challenge",
+    "november": "Build a small web application",
+    "december": "Review and reflect on the year's progress",
+}
 # Create your views here.
 def index(request):
-    return HttpResponse("Hasta aqui si funciona!")
+    return HttpResponse("hasta aqui si funciona")
 
-def january(request):
-    return HttpResponse("Walk for at least 30 min every day.")
+def monthly_challenge(request, month):
 
-def february(request):
-    return HttpResponse("Go to the gym every day")
+    month_var = months_lib.get(month)
 
-def march(request):
-    return HttpResponse("Read one book this month")
-
-def april(request):
-    return HttpResponse("Start a new programming project")
-
-def may(request):
-    return HttpResponse("Practice a new skill daily")
-
-def june(request):
-    return HttpResponse("Go for a morning run every weekend")
-
-def july(request):
-    return HttpResponse("Learn a new technology or framework")
-
-def august(request):
-    return HttpResponse("Write a blog post about coding")
-
-def september(request):
-    return HttpResponse("Contribute to an open-source project")
-
-def october(request):
-    return HttpResponse("Prepare for a coding challenge")
-
-def november(request):
-    return HttpResponse("Build a small web application")
-
-def december(request):
-    return HttpResponse("Review and reflect on the year's progress")
+    if month_var:
+        return HttpResponse(f"challenge of {month} : {month_var}")
+    else:
+        return HttpResponseNotFound("Mes no encontrado :c")
+    
